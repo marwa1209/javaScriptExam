@@ -17,10 +17,9 @@ function clearSearchCotainer() {
 //___________________________preLOader___________________________________//
 
 $(document).ready(() => {
-  defaultDisplay("").then(() => {
-    $(".loading-screen").fadeOut(500);
-    $("body").css("overflow", "visible");
-  });
+  defaultDisplay("");
+  $(".loading-screen").fadeOut(500);
+  $("body").css("overflow", "visible");
 });
 
 //______________________________________________________________________//
