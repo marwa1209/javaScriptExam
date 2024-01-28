@@ -17,15 +17,11 @@ function clearSearchCotainer() {
 //___________________________preLOader___________________________________//
 
 $(document).ready(() => {
-  setTimeout(() => {
-    defaultDisplay("").then(() => {
-      $(".loading-screen").fadeOut(500, () => {
-        $("body").css("overflow", "visible");
-      });
-    });
-  }, 1000); // Adjust the delay as needed
+  defaultDisplay("").then(() => {
+    $(".loading-screen").fadeOut(500);
+    $("body").css("overflow", "visible");
+  });
 });
-
 
 //______________________________________________________________________//
 //___________________________SIDE NAV___________________________________//
@@ -133,6 +129,7 @@ function displaySearch() {
 async function searchByName(e) {
   inputValue = e.target.value;
   closeSideNav();
+  $(".inner-loading-screen").fadeIn(300);
   let response = await fetch(
     `https://www.themealdb.com/api/json/v1/1/search.php?s=${inputValue}`
   );
@@ -142,10 +139,12 @@ async function searchByName(e) {
   } else {
     displayMeals([]);
   }
+  $(".inner-loading-screen").fadeOut(300);
 }
 //NavLink(searchByFirstLetter)
 async function searchByFirstLetter(e) {
   let inputValue = e.target.value;
+  $(".inner-loading-screen").fadeIn(300);
   closeSideNav();
   if (inputValue == "") {
     inputValue = "a";
@@ -159,6 +158,7 @@ async function searchByFirstLetter(e) {
   } else {
     displayMeals([]);
   }
+    $(".inner-loading-screen").fadeOut(300);
 }
 
 //___________________________Categories___________________________________//
@@ -191,22 +191,26 @@ function displayCategory(a) {
 }
 // get meals Categories from Api
 async function getCategories() {
+  $(".inner-loading-screen").fadeIn(300);
   let response = await fetch(
     `https://www.themealdb.com/api/json/v1/1/categories.php`
   );
   let finalresponse = await response.json();
   displayCategory(finalresponse.categories);
+  $(".inner-loading-screen").fadeOut(300);
 }
 // get meals of each categories from Api
 async function getCategoriesDetail(cat) {
    $("#contact").addClass("d-none")
   clearDefaultMeals();
+  $(".inner-loading-screen").fadeIn(300);
   let response = await fetch(
     `https://www.themealdb.com/api/json/v1/1/filter.php?c=${cat}`
   );
   let finalresponse = await response.json();
 
   displayMeals(finalresponse.meals.slice(0, 20));
+  $(".inner-loading-screen").fadeOut(300);
 }
 //___________________________Categories Meal Details(igrediants)___________________________________//
 
