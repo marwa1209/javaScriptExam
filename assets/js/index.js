@@ -20,11 +20,11 @@ $(document).ready(() => {
   $(".loading-screen").fadeOut(500);
   $("body").css("overflow", "visible");
 });
-function fadeIn(){
-$(".inner-loading-screen").fadeIn(300);
+function fadeIn() {
+  $(".inner-loading-screen").fadeIn(300);
 }
 function fadeOut() {
- $(".inner-loading-screen").fadeOut(300);
+  $(".inner-loading-screen").fadeOut(300);
 }
 //______________________________________________________________________//
 //___________________________SIDE NAV___________________________________//
@@ -87,21 +87,21 @@ $(".contact-link").on("click", function () {
 //______________________________________________________________________//
 // default display
 async function defaultDisplay(term) {
-   $("#contact").addClass("d-none")
+  $("#contact").addClass("d-none")
   clearSearchCotainer();
-     fadeIn();
+  fadeIn();
   let response = await fetch(
     `https://www.themealdb.com/api/json/v1/1/search.php?s=${term}`
   );
   let finalresponse = await response.json();
   displayMeals(finalresponse.meals);
- fadeOut();
+  fadeOut();
 }
 defaultDisplay("");
 // display Meals
 function displayMeals(a) {
-fadeIn();
-   $("#contact").addClass("d-none")
+  fadeIn();
+  $("#contact").addClass("d-none")
   let cartoona = "";
   for (let i = 0; i < a.length; i++) {
     cartoona += `
@@ -122,7 +122,7 @@ fadeIn();
 //___________________________NavLink(search)___________________________________//
 // display search inputs
 function displaySearch() {
-   $("#contact").addClass("d-none")
+  $("#contact").addClass("d-none")
   clearDefaultMeals();
   searchContainer.innerHTML = `
         <div class="col-md-6 ">
@@ -172,17 +172,17 @@ async function searchByFirstLetter(e) {
 //___________________________Categories___________________________________//
 // display meals Categories
 function displayCategory(a) {
-   $("#contact").addClass("d-none")
+  $("#contact").addClass("d-none")
   clearSearchCotainer();
   clearDefaultMeals();
   let cartoona = "";
-  let splitedtext ="";
+  let splitedtext = "";
   for (let i = 0; i < a.length; i++) {
-         if (a[i].strCategoryDescription != null) {
-           splitedtext = a[i].strCategoryDescription.split(" ").slice(0, 20).join(" ");
-         } else {
-           splitedtext = a[i].strCategoryDescription;
-         }
+    if (a[i].strCategoryDescription != null) {
+      splitedtext = a[i].strCategoryDescription.split(" ").slice(0, 20).join(" ");
+    } else {
+      splitedtext = a[i].strCategoryDescription;
+    }
     cartoona += `
   <div class="col-lg-3 col-md-6 col-sm-12 gy-4" >
     <div class="meal-cat rounded-2 pointer"onclick="getCategoriesDetail('${a[i].strCategory}')">
@@ -210,7 +210,7 @@ async function getCategories() {
 // get meals of each categories from Api
 async function getCategoriesDetail(cat) {
   fadeIn()
-   $("#contact").addClass("d-none")
+  $("#contact").addClass("d-none")
   clearDefaultMeals();
   let response = await fetch(
     `https://www.themealdb.com/api/json/v1/1/filter.php?c=${cat}`
@@ -226,7 +226,7 @@ async function getCategoriesDetail(cat) {
 async function getMealingreds(id) {
   fadeIn();
   closeSideNav();
-   $("#contact").addClass("d-none")
+  $("#contact").addClass("d-none")
   clearSearchCotainer();
   let respone = await fetch(
     `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
@@ -240,15 +240,14 @@ async function getMealingreds(id) {
 
 // display meal detail
 function displayMealsIngred(meal) {
-   $("#contact").addClass("d-none")
+  $("#contact").addClass("d-none")
   clearSearchCotainer();
   // loop on all ingrediants
   let ingreds = ``;
   for (let i = 0; i < 20; i++) {
     if (meal[`strIngredient${i}`]) {
-      ingreds += `<li class="alert alert-info m-2 p-1">${
-        meal[`strMeasure${i}`]
-      } ${meal[`strIngredient${i}`]}</li>`;
+      ingreds += `<li class="alert alert-info m-2 p-1">${meal[`strMeasure${i}`]
+        } ${meal[`strIngredient${i}`]}</li>`;
     }
   }
 
@@ -294,7 +293,7 @@ function displayMealsIngred(meal) {
 
 // display Areas
 function displayAreas(a) {
-   $("#contact").addClass("d-none")
+  $("#contact").addClass("d-none")
   clearSearchCotainer();
   clearDefaultMeals();
   let cartoona = "";
@@ -324,13 +323,13 @@ async function getAreas() {
 // display area meals
 async function getmealsyArea(area) {
   fadeIn();
-   $("#contact").addClass("d-none")
+  $("#contact").addClass("d-none")
   clearDefaultMeals();
   clearSearchCotainer();
   let response = await fetch(
     `https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`);
   let finalresponse = await response.json();
-console.log(finalresponse.meals);
+  console.log(finalresponse.meals);
   displayMeals(finalresponse.meals.slice(0, 20));
   fadeOut();
 }
@@ -341,18 +340,19 @@ console.log(finalresponse.meals);
 //______________________________________________________________________//
 
 // display main ingrediants
-function displayMainIngrediants(a) {;
- $("#contact").addClass("d-none")
+function displayMainIngrediants(a) {
+  ;
+  $("#contact").addClass("d-none")
   clearDefaultMeals();
   let cartoona = "";
-  let splitedtext="";
+  let splitedtext = "";
   for (let i = 0; i < a.length; i++) {
-     if (a[i].strDescription!=null) {
-       splitedtext = a[i].strDescription.split(" ").slice(0,20).join(" ");
-     }
-     else{
-       splitedtext = a[i].strDescription;
-     }
+    if (a[i].strDescription != null) {
+      splitedtext = a[i].strDescription.split(" ").slice(0, 20).join(" ");
+    }
+    else {
+      splitedtext = a[i].strDescription;
+    }
     cartoona += `
   <div class="col-lg-3 col-md-6 col-sm-12 gy-4" >
     <div class="rounded-2 text-center pointer" onclick="getingMeals('${a[i].strIngredient}')">
@@ -362,7 +362,7 @@ function displayMainIngrediants(a) {;
                 </div>
   </div>
     `;
- 
+
   }
   $("#meals").html(cartoona);
 }
@@ -372,13 +372,13 @@ async function getIngrediants() {
   let response = await fetch(`https://www.themealdb.com/api/json/v1/1/list.php?i=list`);
   let finalresponse = await response.json();
   displayMainIngrediants(finalresponse.meals.slice(0, 20));
-fadeOut();
+  fadeOut();
 }
 
 // get meals by ingrediants from Api
 async function getingMeals(ing) {
   fadeIn();
-   $("#contact").addClass("d-none")
+  $("#contact").addClass("d-none")
   clearDefaultMeals();
   let response = await fetch(
     `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ing}`
@@ -395,19 +395,20 @@ async function getingMeals(ing) {
 //______________________________________________________________________//
 
 // display showInputs
-function showinputs() {;
+function showinputs() {
+  ;
   $("#contact").removeClass("d-none")
   clearDefaultMeals();
   clearSearchCotainer();
 }
 //________________________Inputs-actions______________________________//
 $(".inputsContainer input").on("keyup", () => {
- inputsValidation()
-  
+  inputsValidation()
+
 });
 
 $("#nameInput").on("focus", () => {
-  nameInput= true;
+  nameInput = true;
 });
 
 $("#emailInput").on("focus", () => {
@@ -429,12 +430,12 @@ let submitBtn = document.getElementById("submitBtn");
 //________________________validation______________________________//
 
 // validatin
-let nameInput= false;
-let emailInput= false;
-let phoneInput= false;
-let ageInput= false;
-let passwordInput= false;
-let repasswordInput= false;
+let nameInput = false;
+let emailInput = false;
+let phoneInput = false;
+let ageInput = false;
+let passwordInput = false;
+let repasswordInput = false;
 
 function inputsValidation() {
   if (nameInput) {
@@ -527,7 +528,7 @@ function nameValidation() {
 function emailValidation() {
   let email = document.getElementById("emailInput").value
   return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-   email
+    email
   );
 }
 function phoneValidation() {

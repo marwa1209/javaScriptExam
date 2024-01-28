@@ -1,65 +1,79 @@
 /* *************** */
 /* global-Styles */
 /* **************** */
-body{
+body {
   background-color: #0D0D0D;
 }
-.start{
+
+.start {
   left: -256.562px;
 }
-img{
+
+img {
   width: 100%;
   display: block;
 }
+
 i {
   cursor: pointer;
 }
-ul{
-  list-style:none;
+
+ul {
+  list-style: none;
   padding: 0;
   margin: 0;
 }
-.pointer{
+
+.pointer {
   cursor: pointer;
 }
+
 ::placeholder {
   color: #6C706F !important;
 }
-input{
+
+input {
   outline: none;
 }
+
 /* *************** */
 /* N A V */
 /* **************** */
-.links-container{
-background-color: #0D0D0D;
+.links-container {
+  background-color: #0D0D0D;
 }
-.nav-links li.nav-link{
+
+.nav-links li.nav-link {
   position: relative;
   padding-bottom: 20px;
 }
+
 .logo {
   width: 50px;
 }
+
 /* meals */
-#mealsSection .row .layer{
+#mealsSection .row .layer {
   width: 100%;
-    height: 100%;
-    background-color: #f9f6f6ca;
-    top: 100%;
-    transition: .5s;
+  height: 100%;
+  background-color: #f9f6f6ca;
+  top: 100%;
+  transition: .5s;
 }
-#mealsSection .row .meal{
+
+#mealsSection .row .meal {
   position: relative;
   overflow: hidden;
 }
-#mealsSection .row .meal .layer{
+
+#mealsSection .row .meal .layer {
   position: absolute;
   display: flex;
   align-items: center;
   color: black;
   padding: 0.5rem;
 }
+
 #mealsSection .row .meal:hover .layer {
   top: 0;
 }
@@ -80,8 +94,9 @@ background-color: #0D0D0D;
 #mealsSection .row .meal-cat:hover .layer {
   top: 0;
 }
+
 /* search */
-.search{
+.search {
   background-color: transparent !important;
   margin-bottom: 1.1rem;
   color: #fff !important;
@@ -92,7 +107,7 @@ background-color: #0D0D0D;
 }
 
 /* preLoader */
-.loading-screen{
+.loading-screen {
   position: fixed;
   top: 0;
   left: 0;
@@ -100,6 +115,7 @@ background-color: #0D0D0D;
   bottom: 0;
   display: flex;
 }
+
 .inner-loading-screen {
   position: absolute;
   z-index: 9;
