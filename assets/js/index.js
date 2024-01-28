@@ -17,9 +17,11 @@ function clearSearchCotainer() {
 //___________________________preLOader___________________________________//
 
 $(document).ready(() => {
+  defaultDisplay("");
   $(".loading-screen").fadeOut(500);
   $("body").css("overflow", "visible");
 });
+
 function fadeIn() {
   $(".inner-loading-screen").fadeIn(300);
 }
@@ -100,7 +102,7 @@ async function defaultDisplay(term) {
 defaultDisplay("");
 // display Meals
 function displayMeals(a) {
-  fadeIn();
+
   $("#contact").addClass("d-none")
   let cartoona = "";
   for (let i = 0; i < a.length; i++) {
@@ -116,7 +118,7 @@ function displayMeals(a) {
     `;
   }
   $("#meals").html(cartoona);
-  fadeOut();
+
 }
 
 //___________________________NavLink(search)___________________________________//
