@@ -100,3 +100,9 @@ background-color: #0D0D0D;
   bottom: 0;
   display: flex;
 }
+.inner-loading-screen {
+  position: absolute;
+  z-index: 9;
+  background-color: #0D0D0D;
+  display: flex;
+}

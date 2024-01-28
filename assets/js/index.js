@@ -17,11 +17,15 @@ function clearSearchCotainer() {
 //___________________________preLOader___________________________________//
 
 $(document).ready(() => {
-  defaultDisplay("");
   $(".loading-screen").fadeOut(500);
   $("body").css("overflow", "visible");
 });
-
+function fadeIn(){
+$(".inner-loading-screen").fadeIn(300);
+}
+function fadeOut() {
+ $(".inner-loading-screen").fadeOut(300);
+}
 //______________________________________________________________________//
 //___________________________SIDE NAV___________________________________//
 //______________________________________________________________________//
@@ -85,15 +89,18 @@ $(".contact-link").on("click", function () {
 async function defaultDisplay(term) {
    $("#contact").addClass("d-none")
   clearSearchCotainer();
+     fadeIn();
   let response = await fetch(
     `https://www.themealdb.com/api/json/v1/1/search.php?s=${term}`
   );
   let finalresponse = await response.json();
   displayMeals(finalresponse.meals);
+ fadeOut();
 }
 defaultDisplay("");
 // display Meals
 function displayMeals(a) {
+fadeIn();
    $("#contact").addClass("d-none")
   let cartoona = "";
   for (let i = 0; i < a.length; i++) {
@@ -109,6 +116,7 @@ function displayMeals(a) {
     `;
   }
   $("#meals").html(cartoona);
+  fadeOut();
 }
 
 //___________________________NavLink(search)___________________________________//
@@ -128,36 +136,37 @@ function displaySearch() {
 async function searchByName(e) {
   inputValue = e.target.value;
   closeSideNav();
-  $(".inner-loading-screen").fadeIn(300);
+  fadeIn();
   let response = await fetch(
     `https://www.themealdb.com/api/json/v1/1/search.php?s=${inputValue}`
   );
   let finalresponse = await response.json();
   if (finalresponse.meals) {
     displayMeals(finalresponse.meals);
+    fadeOut();
   } else {
     displayMeals([]);
   }
-  $(".inner-loading-screen").fadeOut(300);
 }
 //NavLink(searchByFirstLetter)
 async function searchByFirstLetter(e) {
   let inputValue = e.target.value;
-  $(".inner-loading-screen").fadeIn(300);
   closeSideNav();
   if (inputValue == "") {
     inputValue = "a";
   }
+  fadeIn();
   let response = await fetch(
     `https://www.themealdb.com/api/json/v1/1/search.php?f=${inputValue}`
   );
   let finalresponse = await response.json();
   if (finalresponse.meals) {
     displayMeals(finalresponse.meals);
+    fadeOut()
   } else {
     displayMeals([]);
   }
-    $(".inner-loading-screen").fadeOut(300);
+
 }
 
 //___________________________Categories___________________________________//
@@ -190,31 +199,32 @@ function displayCategory(a) {
 }
 // get meals Categories from Api
 async function getCategories() {
-  $(".inner-loading-screen").fadeIn(300);
+  fadeIn()
   let response = await fetch(
     `https://www.themealdb.com/api/json/v1/1/categories.php`
   );
   let finalresponse = await response.json();
   displayCategory(finalresponse.categories);
-  $(".inner-loading-screen").fadeOut(300);
+  fadeOut();
 }
 // get meals of each categories from Api
 async function getCategoriesDetail(cat) {
+  fadeIn()
    $("#contact").addClass("d-none")
   clearDefaultMeals();
-  $(".inner-loading-screen").fadeIn(300);
   let response = await fetch(
     `https://www.themealdb.com/api/json/v1/1/filter.php?c=${cat}`
   );
   let finalresponse = await response.json();
 
   displayMeals(finalresponse.meals.slice(0, 20));
-  $(".inner-loading-screen").fadeOut(300);
+  fadeOut();
 }
 //___________________________Categories Meal Details(igrediants)___________________________________//
 
 // get meal detail
 async function getMealingreds(id) {
+  fadeIn();
   closeSideNav();
    $("#contact").addClass("d-none")
   clearSearchCotainer();
@@ -225,6 +235,7 @@ async function getMealingreds(id) {
   let meal = finalresponse.meals[0];
   console.log(meal);
   displayMealsIngred(meal);
+  fadeOut();
 }
 
 // display meal detail
@@ -302,14 +313,17 @@ function displayAreas(a) {
 
 // get areas from Api
 async function getAreas() {
+  fadeIn();
   let response = await fetch(
     `https://www.themealdb.com/api/json/v1/1/list.php?a=list`
   );
   let finalresponse = await response.json();
   displayAreas(finalresponse.meals);
+  fadeOut();
 }
 // display area meals
 async function getmealsyArea(area) {
+  fadeIn();
    $("#contact").addClass("d-none")
   clearDefaultMeals();
   clearSearchCotainer();
@@ -318,6 +332,7 @@ async function getmealsyArea(area) {
   let finalresponse = await response.json();
 console.log(finalresponse.meals);
   displayMeals(finalresponse.meals.slice(0, 20));
+  fadeOut();
 }
 
 
@@ -353,13 +368,16 @@ function displayMainIngrediants(a) {;
 }
 // get ingrediats from Api
 async function getIngrediants() {
+  fadeIn();
   let response = await fetch(`https://www.themealdb.com/api/json/v1/1/list.php?i=list`);
   let finalresponse = await response.json();
   displayMainIngrediants(finalresponse.meals.slice(0, 20));
+fadeOut();
 }
 
 // get meals by ingrediants from Api
 async function getingMeals(ing) {
+  fadeIn();
    $("#contact").addClass("d-none")
   clearDefaultMeals();
   let response = await fetch(
@@ -368,6 +386,7 @@ async function getingMeals(ing) {
   let finalresponse = await response.json();
 
   displayMeals(finalresponse.meals.slice(0, 20));
+  fadeOut();
 }
 
 
