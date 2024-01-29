@@ -102,7 +102,6 @@ async function defaultDisplay(term) {
 defaultDisplay("");
 // display Meals
 function displayMeals(a) {
-
   $("#contact").addClass("d-none")
   let cartoona = "";
   for (let i = 0; i < a.length; i++) {
@@ -136,6 +135,7 @@ function displaySearch() {
 }
 //NavLink(searchByName)
 async function searchByName(e) {
+   closeSideNav();
   inputValue = e.target.value;
   closeSideNav();
   fadeIn();
@@ -152,6 +152,7 @@ async function searchByName(e) {
 }
 //NavLink(searchByFirstLetter)
 async function searchByFirstLetter(e) {
+   closeSideNav();
   let inputValue = e.target.value;
   closeSideNav();
   if (inputValue == "") {
@@ -174,6 +175,7 @@ async function searchByFirstLetter(e) {
 //___________________________Categories___________________________________//
 // display meals Categories
 function displayCategory(a) {
+  closeSideNav();
   $("#contact").addClass("d-none")
   clearSearchCotainer();
   clearDefaultMeals();
@@ -201,6 +203,7 @@ function displayCategory(a) {
 }
 // get meals Categories from Api
 async function getCategories() {
+
   fadeIn()
   let response = await fetch(
     `https://www.themealdb.com/api/json/v1/1/categories.php`
@@ -211,6 +214,7 @@ async function getCategories() {
 }
 // get meals of each categories from Api
 async function getCategoriesDetail(cat) {
+  closeSideNav();
   fadeIn()
   $("#contact").addClass("d-none")
   clearDefaultMeals();
@@ -226,6 +230,7 @@ async function getCategoriesDetail(cat) {
 
 // get meal detail
 async function getMealingreds(id) {
+  closeSideNav();
   fadeIn();
   closeSideNav();
   $("#contact").addClass("d-none")
@@ -295,6 +300,7 @@ function displayMealsIngred(meal) {
 
 // display Areas
 function displayAreas(a) {
+
   $("#contact").addClass("d-none")
   clearSearchCotainer();
   clearDefaultMeals();
@@ -324,6 +330,7 @@ async function getAreas() {
 }
 // display area meals
 async function getmealsyArea(area) {
+    closeSideNav();
   fadeIn();
   $("#contact").addClass("d-none")
   clearDefaultMeals();
@@ -343,7 +350,7 @@ async function getmealsyArea(area) {
 
 // display main ingrediants
 function displayMainIngrediants(a) {
-  ;
+
   $("#contact").addClass("d-none")
   clearDefaultMeals();
   let cartoona = "";
@@ -379,6 +386,7 @@ async function getIngrediants() {
 
 // get meals by ingrediants from Api
 async function getingMeals(ing) {
+      closeSideNav();
   fadeIn();
   $("#contact").addClass("d-none")
   clearDefaultMeals();
@@ -398,6 +406,7 @@ async function getingMeals(ing) {
 
 // display showInputs
 function showinputs() {
+  
   ;
   $("#contact").removeClass("d-none")
   clearDefaultMeals();
